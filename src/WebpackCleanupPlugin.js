@@ -19,6 +19,8 @@ class WebpackCleanupPlugin {
         return;
       }
 
+      if(!fs.existsSync(outputPath)) return
+
       const assets = stats.toJson().assets.map(asset => asset.name);
       const exclude = union(this.options.exclude, assets);
       const files = getFiles(outputPath, exclude);
